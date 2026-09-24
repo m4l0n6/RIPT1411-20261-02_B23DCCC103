@@ -10,13 +10,11 @@ import { addToCart } from "../features/cart/cartSlice";
 import {
   Card,
   CardHeader,
-  CardTitle,
   CardContent,
-  CardFooter,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import Product from "./Product";
 
 export function ProductList() {
   const dispatch = useAppDispatch();
@@ -60,33 +58,11 @@ export function ProductList() {
   return (
     <div className="gap-4 grid grid-cols-2 sm:grid-cols-3">
       {products.map((product) => (
-        <Card key={product.id} className="flex flex-col">
-          <CardHeader>
-            <img
-              src={product.image}
-              alt={product.title}
-              className="mx-auto h-24 object-contain"
-            />
-          </CardHeader>
-          <CardContent className="flex-1">
-            <CardTitle
-              className="font-medium text-sm line-clamp-2"
-              title={product.title}
-            >
-              {product.title}
-            </CardTitle>
-            <p className="mt-2 font-semibold">${product.price.toFixed(2)}</p>
-          </CardContent>
-          <CardFooter>
-            <Button
-              size="sm"
-              className="w-full"
-              onClick={() => dispatch(addToCart({ product }))}
-            >
-              Thêm vào giỏ
-            </Button>
-          </CardFooter>
-        </Card>
+        <Product
+          key={product.id}
+          product={product}
+          onAddToCart={() => dispatch(addToCart({ product }))}
+        />
       ))}
     </div>
   );

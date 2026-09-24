@@ -4,6 +4,7 @@ import { Separator } from "@/components/ui/separator";
 import { ProductList } from "./components/ProductList";
 import { ProductListRTKQuery } from "./components/ProductListRTKQuery";
 import { Cart } from "./components/Cart";
+import { Favorites } from "./components/Favorites";
 
 type DataSource = "thunk" | "rtk-query";
 
@@ -41,7 +42,10 @@ function App() {
         </section>
 
         <aside className="min-w-0">
-          <Cart />
+          <div className="space-y-6">
+            <Favorites />
+            <Cart />
+          </div>
         </aside>
       </main>
     </div>
